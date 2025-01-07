@@ -77,6 +77,10 @@ MainWindow::MainWindow(QWidget *parent) :
     joystickTimer_ = new QTimer();
     QObject::connect(joystickTimer_, SIGNAL(timeout()), joystick_, SLOT(pollData()));
     joystickTimer_->start(50);
+
+    v1Mode_->hide();
+    v2Mode_->hide();
+    v3Mode_->hide();
 }
 
 MainWindow::~MainWindow()
@@ -333,8 +337,7 @@ void MainWindow::reset_all_valves()
 
     updateValveBars();
 
-    //for (int i = 0; i < VALVE_COUNT; i++)
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < VALVE_COUNT; i++)
     {
         QString url_str = build_url_str((Valve) i, "ResetState", false);
 
